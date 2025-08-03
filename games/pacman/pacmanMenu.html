@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacman</title>
+</head>
+
+<style>
+    @font-face {
+        font-family: 'Emulogic';
+        src: url('fonts/Emulogic-zrEw.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+   body {   
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: url('assets/mazeBg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    }
+
+
+    .menu-container{
+        display: flex;
+        padding : 20px;
+        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px; 
+        justify-content: center;
+        max-width: 800px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    .menu-button{
+        transition: transform 0.2s ease-in-out;
+        background-image: url('assets/arcadeBG.jpg');
+        color: aliceblue;
+        flex-grow: 1;
+        width:200px;
+        font-family: "Emulogic";
+        border: none;
+        border-radius: 5px;
+        max-width: 300px;
+        padding: 15px;
+        flex-shrink: 0;
+    }
+  .menu-button:hover {
+    transform: scale(1.1);
+    z-index: 2;
+    }   
+    .menu-image{
+        border: none;
+        
+        height: 200px;
+        width: auto;
+    }
+    .title-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+    }
+    .menu-title{
+        font-family: 'Emulogic';
+        color:white;
+    }
+
+</style>
+
+<body>
+    <div class="title-container">
+        <h1 class="menu-title">Menu</h1>
+    </div>
+
+    <div class="menu-container">
+    </div>
+    
+    <div class = "title-container">
+        <a style="text-decoration:none" href="../../index.html">
+            <h3 style="font-family: Emulogic;">Home</h3>
+        </a>
+    </div>
+  
+
+    <script src="audio.js"></script>
+    
+    <script>
+        let menuItems = [
+            {
+                image : "assets/level1.png",
+                level : 1
+            },
+            {
+                image : "assets/level2.png",
+                level : 2
+            },
+            {
+                image : "assets/level3.png",
+                level : 3
+            },
+        ]
+
+        const menuContainerElem = document.querySelector(".menu-container");
+
+        let itemsHTML = '';
+
+        menuItems.forEach((item) =>{
+            itemsHTML += `
+                 <button
+                  class="menu-button"
+                  data-map-index = ${item.level - 1}>
+                    <image class="menu-image" src = ${item.image} alt="">
+                    <h4>Level ${item.level}</h4>
+                </button>
+            `;
+        });
+        menuContainerElem.innerHTML = itemsHTML;
+        console.log(clickSound);
+
+        const menuButtonsElems = document.querySelectorAll('.menu-button');
+            menuButtonsElems.forEach((button) =>{
+                button.addEventListener("click" , () =>{
+                    let mapIndex = button.dataset.mapIndex;
+                    window.location.assign(`pacmanLevel.html?map=${button.dataset.mapIndex}`);
+                  
+                });
+            });
+    </script>
+</body>
+
+</html>

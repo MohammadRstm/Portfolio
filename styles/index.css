@@ -1,0 +1,255 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: 'Inter', sans-serif;
+background: linear-gradient(180deg, #1a0033 0%, #230042 100%);
+color: #ffffff;
+line-height: 1.6;
+}
+
+header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem 2rem;
+background: linear-gradient(180deg, #000000 0%, #230042 100%);
+border-bottom: 1px solid #1a1a2e;
+}
+header .logo {
+font-size: 1.5rem;
+font-weight: bold;
+}
+nav a {
+margin-left: 2rem;
+text-decoration: none;
+color: #ffffff;
+transition: all 0.3s ease; 
+}
+nav a:hover {
+  color: #b388ff; 
+  text-shadow: 0 0 8px #b388ff, 0 0 15px #b388ff;
+}
+
+
+.intro {
+display: flex;
+justify-content: center;
+padding: 2rem;
+min-height: 20vh;
+text-align: center;
+margin: -1rem 1rem 2rem;
+}
+.intro-container {
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  gap: 2rem;
+}
+.intro-container img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+
+  /* Strong outer glow emanating from the center */
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7))
+          drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))
+          drop-shadow(0 0 30px rgba(255, 255, 255, 0.3));
+  
+  position: relative; /* Needed for pseudo-element */
+}
+
+/* Adds a "light source" effect from the center */
+.intro-container img::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  filter: blur(15px);
+  z-index: -1;
+}
+.intro-text {
+  text-align: left;
+  color: white;
+}
+.intro-text h2 {
+  font-size: 3.0rem;
+  margin-bottom: 0.5rem;
+  font-family:  Helvetica;
+}
+
+.intro-text p {
+  font-size: 1.1rem;
+  margin: 0.3rem 0;
+}
+
+/* Button Styles (unchanged) */
+.glow-btn {
+  display: block;
+  margin: 2rem auto;
+  padding: 0.8rem 2rem;
+  background: #6e2ce2;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(110, 44, 226, 0.6);
+}
+
+.glow-btn:hover {
+  background: #7d3aff;
+  box-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.6),
+    0 0 25px rgba(110, 44, 226, 0.8);
+}
+
+/* Projects Container Animation */
+.projects-container {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 
+    max-height 0.5s ease-out,
+    opacity 0.3s ease 0.2s; /* Slight delay for opacity */
+}
+
+.projects-container.active {
+  max-height: 2000px; /* Adjust based on content height */
+  opacity: 1;
+}
+
+.project-details-span{
+  font-size: 10px;
+  position: absolute;
+  left: 550px;
+}
+
+/* Projects Title & Experience Cards */
+.projects-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.experience {
+  margin: 3rem auto;
+  width: 90%;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.4s ease 0.1s; /* Slight delay */
+}
+
+/* When active, fade in */
+.projects-container.active .projects-title,
+.projects-container.active .experience {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.experience .card {
+  background: #1a1a2e;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.experience a{
+  color:white;
+  text-decoration: none;
+}
+
+
+.tech-icons {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.icons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.icon {
+  margin: 50px 50px;
+  background-color: rgba(255, 255, 255, 0.164); /* black-ish background */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.icon:nth-child(odd) {
+  transform: translateY(-10px);
+}
+.icon:nth-child(even) {
+  transform: translateY(10px);
+}
+
+.icon:hover {
+  transform: scale(1.1); /* scale up on hover */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.icon img {
+  width: 60px;
+  height: 60px;
+}
+
+
+.projects {
+margin: 3rem auto;
+width: 90%;
+max-width: 1000px;
+}
+.project {
+display: flex;
+flex-direction: row;
+gap: 1rem;
+background: #1a1a2e;
+padding: 1rem;
+border-radius: 10px;
+margin-bottom: 2rem;
+box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+.project img {
+width: 100px;
+height: 100px;
+object-fit: cover;
+border-radius: 8px;
+}
+.project-text {
+flex: 1;
+}
+.footer {
+text-align: center;
+padding: 2rem;
+color: #666;
+background: linear-gradient(180deg, #1a0033 0%, #230042 100%);
+
+}

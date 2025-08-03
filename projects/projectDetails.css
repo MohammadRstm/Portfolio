@@ -1,0 +1,62 @@
+.project-details-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.project-img-box img {
+  width: 300px;
+  height: auto;
+  border-radius: 15px;
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.2));
+}
+
+.project-info {
+  flex: 1;
+  max-width: 600px;
+  color: white;
+}
+
+.project-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #b388ff;
+}
+
+.project-info .desc {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #ddd;
+}
+
+.project-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.meta-block h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #a66cff;
+}
+
+.meta-block p,
+.meta-block ul {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.meta-block ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.meta-block .icons-container {
+  justify-content: flex-start;
+  gap: 1rem;
+}
