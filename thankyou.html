@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #1a0033 0%, #230042 100%);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #b388ff, 0 0 20px #b388ff;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #ddd;
+    }
+    .glow-btn {
+      padding: 0.8rem 2rem;
+      background: #6e2ce2;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 20px rgba(110, 44, 226, 0.6);
+      text-decoration: none;
+    }
+
+    .glow-btn:hover {
+      background: #7d3aff;
+      box-shadow:
+        0 0 15px rgba(255, 255, 255, 0.6),
+        0 0 25px rgba(110, 44, 226, 0.8);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 1rem;
+      font-size: 0.9rem;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Thank You!</h1>
+  <p>Your message has been sent successfully. I'll get back to you soon.</p>
+  <a href="index.html" class="glow-btn">Back to Home</a>
+
+  <footer>© 2025 Your Name</footer>
+
+</body>
+</html>
