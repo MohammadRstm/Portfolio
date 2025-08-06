@@ -2,7 +2,14 @@
 margin: 0;
 padding: 0;
 box-sizing: border-box;
+outline: 1px solid red;
 }
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
 font-family: 'Inter', sans-serif;
 background: linear-gradient(180deg, #1a0033 0%, #230042 100%);
@@ -11,28 +18,39 @@ line-height: 1.6;
 }
 
 header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 1rem 2rem;
-background: linear-gradient(180deg, #000000 0%, #230042 100%);
-border-bottom: 1px solid #1a1a2e;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(180deg, #000000 0%, #230042 100%);
+  border-bottom: 1px solid #1a1a2e;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  box-sizing: border-box;
 }
 header .logo {
-font-size: 1.5rem;
-font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: bold;
+  white-space: nowrap;
 }
+nav {
+  flex: 1; /* Takes up remaining space */
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem; /* Space between links */
+  flex-wrap: nowrap; /* Prevents wrapping */
+}
+
 nav a {
-margin-left: 2rem;
-text-decoration: none;
-color: #ffffff;
-transition: all 0.3s ease; 
+  text-decoration: none;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevent wrapping */
 }
 nav a:hover {
   color: #b388ff; 
   text-shadow: 0 0 8px #b388ff, 0 0 15px #b388ff;
 }
-
 
 .intro {
 display: flex;
@@ -90,6 +108,22 @@ margin: -1rem 1rem 2rem;
   margin: 0.3rem 0;
 }
 
+
+@media (max-width: 768px) {
+  .intro-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .intro-text {
+    text-align: center;
+  }
+}
+
+
+
+
 /* Button Styles (unchanged) */
 .glow-btn {
   display: block;
@@ -130,10 +164,11 @@ margin: -1rem 1rem 2rem;
   opacity: 1;
 }
 
-.project-details-span{
+.project-details-span {
+  display: block;
   font-size: 10px;
-  position: absolute;
-  left: 550px;
+  margin-top: 5px;
+  color: #ccc;
 }
 
 /* Projects Title & Experience Cards */
@@ -141,8 +176,10 @@ margin: -1rem 1rem 2rem;
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+  text-align: center;
   transform: translateY(-10px);
   opacity: 0;
+  padding: 0 1rem;
   transition: all 0.4s ease;
 }
 
@@ -151,9 +188,10 @@ margin: -1rem 1rem 2rem;
   width: 90%;
   max-width: 1000px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
   opacity: 0;
+  padding: 0 1rem;
   transform: translateY(-10px);
   transition: all 0.4s ease 0.1s; /* Slight delay */
 }
@@ -171,11 +209,32 @@ margin: -1rem 1rem 2rem;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  word-wrap: break-word;
+  white-space: normal;
+  min-height: 80px;
 }
 
 .experience a{
   color:white;
   text-decoration: none;
+}
+
+@media (max-width: 500px) {
+  .project-details-span {
+    font-size: 9px;
+  }
+  
+  .experience .card {
+    font-size: 14px;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .experience .card {
+    font-size: 14px;
+    padding: 0.8rem;
+  }
 }
 
 
@@ -202,6 +261,18 @@ margin: -1rem 1rem 2rem;
   justify-content: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .icon {
+    margin: 20px; /* reduced spacing for tablets and phones */
+  }
+}
+
+@media (max-width: 480px) {
+  .icon {
+    margin: 10px; /* even tighter spacing for very small phones */
+  }
 }
 
 .icon:nth-child(odd) {
@@ -246,7 +317,10 @@ border-radius: 8px;
 .project-text {
 flex: 1;
 }
+
+
 .footer {
+width: 100%;
 text-align: center;
 padding: 2rem;
 color: #666;

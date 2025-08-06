@@ -3,14 +3,30 @@
   justify-content: center;
   padding: 4rem 2rem;
   background: linear-gradient(180deg, #230042 0%, #1a0033 100%);
+  width: 100%;
 }
 
 .about-container {
   display: flex;
   align-items: center;
+  justify-content: center; /* <-- Ensures horizontal centering */
   gap: 3rem;
   max-width: 1000px;
   flex-wrap: wrap;
+  text-align: center; /* Optional: makes text centered when stacked */
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
 }
 
 .about-container img {
@@ -20,11 +36,14 @@
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6))
           drop-shadow(0 0 20px rgba(179, 136, 255, 0.4))
           drop-shadow(0 0 30px rgba(179, 136, 255, 0.2));
+  flex-shrink: 1;
+  min-width: 180px;
 }
 
 .about-text {
   max-width: 600px;
-  color: white;
+  min-width: 300px; /* <-- prevent premature wrapping */
+  flex: 1;
 }
 
 .about-text h2 {

@@ -44,26 +44,44 @@
   color: #cccccc;
 }
 
-.contact-info {  
-  position: relative ;
-  left:-220px; 
+.contact-info {
   display: flex;
-  margin-bottom: -55px;
+  flex-wrap: wrap;
+  justify-content: center;      /* centers the items horizontally */
+  align-items: center;          /* vertically center (optional) */
+  gap: 1.2rem;                   /* space between <p> elements */
+  margin-top: 2rem;
+  text-align: center;
+  width: 100%;                  /* make sure it's not wider than needed */
+}
+
+
+.contact-info p {
+  margin: 0;
   font-size: 1rem;
-  color: #cccccc;
-  width:1100px;
-  margin-top: 42px;
+  max-width: 100%;
+  word-wrap: break-word; 
+  white-space: normal; /* optional: prevents breaking inside the line */
 }
-.contact-info p{
-    margin-right:50px ;
+@media (max-width: 600px) {
+  .contact-info {
+    flex-direction: column;
+    align-items: center;       /* was flex-start */
+    text-align: center;
+    padding: 0 1rem;           /* add some horizontal breathing room */
+  }
 }
+
+
+
+
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 2rem;         /* space between icons */
   margin-top: 2.5rem;
+  flex-wrap: wrap;   /* allow wrapping when no more space */
 }
-
 .social-icons a {
   transition: transform 0.3s ease, filter 0.3s ease;
   margin-right: 20px;

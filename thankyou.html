@@ -22,16 +22,20 @@
       height: 100vh;
       text-align: center;
       padding: 2rem;
+      min-width: 280px; /* prevent extreme shrinking */
     }
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
       text-shadow: 0 0 10px #b388ff, 0 0 20px #b388ff;
+      word-wrap: break-word; /* wrap long text */
     }
     p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
       color: #ddd;
+      max-width: 90vw; /* limit width on small screens */
+      word-wrap: break-word;
     }
     .glow-btn {
       padding: 0.8rem 2rem;
@@ -47,6 +51,12 @@
         0 0 10px rgba(255, 255, 255, 0.4),
         0 0 20px rgba(110, 44, 226, 0.6);
       text-decoration: none;
+      max-width: 90vw; /* button doesn't overflow on small screens */
+      white-space: nowrap; /* keep button text on one line */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      box-sizing: border-box;
     }
 
     .glow-btn:hover {
@@ -61,6 +71,25 @@
       bottom: 1rem;
       font-size: 0.9rem;
       color: #999;
+      width: 100%;
+      text-align: center;
+      padding: 0 1rem;
+      box-sizing: border-box;
+      word-wrap: break-word;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .glow-btn {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+      }
     }
   </style>
 </head>
@@ -70,7 +99,7 @@
   <p>Your message has been sent successfully. I'll get back to you soon.</p>
   <a href="index.html" class="glow-btn">Back to Home</a>
 
-  <footer>© 2025 Your Name</footer>
+  <footer>© 2025 Mohammad Rostom</footer>
 
 </body>
 </html>
