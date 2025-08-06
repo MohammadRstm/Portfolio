@@ -1,4 +1,6 @@
 const canvas = document.querySelector("canvas");
+const body = document.body;
+const scrollHeight = body.scrollHeight;
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
@@ -24,11 +26,11 @@ window.addEventListener("mousemove" , (event) =>{
 
 
 
-const numberOfCircles = 400;
+const numberOfCircles = 200;
 const maxRadius = 30;
 const circles = [];
 const colors = [
-  "rgba(179, 136, 255, 0.4)", // soft violet with opacity
+  "rgba(97, 6, 255, 0.4)", // soft violet with opacity
 ];
 
 
@@ -56,10 +58,10 @@ class Circle{
 
     update(){
 
-        if (this.x + this.radius + this.velocity.x >= innerWidth || this.x + this.radius + this.velocity.x <= 0){
+        if (this.x + this.radius + this.velocity.x >= canvas.width || this.x + this.radius + this.velocity.x <= 0){
             this.velocity.x *= -1;
         }
-        if (this.y + this.radius + this.velocity.y >= innerHeight || this.y + this.radius + this.velocity.y <= 0){
+        if (this.y + this.radius + this.velocity.y >= canvas.height || this.y + this.radius + this.velocity.y <= 0){
             this.velocity.y *= -1;
         }
 
@@ -69,6 +71,20 @@ class Circle{
             if (distance(this.x , this.y , circles[i].x , circles[i].y) - this.radius * 2 < 0){
                 resolveCollision(this , circles[i])
             }
+
+            // draw lines
+            let maxDistance = 100;
+            const dist = distance(this.x, this.y, circles[i].x, circles[i].y);
+            if (dist < maxDistance) {
+                context.beginPath();
+                context.moveTo(this.x, this.y);
+                context.lineTo(circles[i].x, circles[i].y);
+                const distOpacity = 1 - dist / maxDistance;
+                context.strokeStyle = `rgba(0, 187, 249, ${distOpacity})`;
+                context.lineWidth = 0.5;
+                context.stroke();
+            }
+
         }
 
         if (distance(mouse.x , mouse.y , this.x , this.y) <= 120 && this.opacity < 0.5){
@@ -148,14 +164,14 @@ function init(){
             x : (Math.random() < 0.5) ? -0.09 : 0.09,
             y :(Math.random() < 0.5) ? -0.09 : 0.09
         }
-        let x = Math.random() * (innerWidth - 2 * radius) + radius;
-        let y = Math.random() * (innerHeight - 2 * radius) + radius;
+        let x = Math.random() * (canvas.width - 2 * radius) + radius;
+        let y = Math.random() * (canvas.height - 2 * radius) + radius;
 
         if (i != 0){
             for (let j =0; j < circles.length; j++){
                 if (distance(x , y , circles[j].x , circles[j].y) - radius * 2 < 0){
-                    x = Math.random() * (innerWidth - 2 * radius) + radius;
-                    y = Math.random() * (innerHeight - 2 * radius) + radius;
+                    x = Math.random() * (canvas.width - 2 * radius) + radius;
+                    y = Math.random() * (canvas.height - 2 * radius) + radius;
 
                     j = -1;// restart loop
                 }
@@ -168,25 +184,13 @@ function init(){
 
 function animate(){
     requestAnimationFrame(animate);
-    context.clearRect(0 , 0 , innerWidth , innerHeight);
+    context.clearRect(0 , 0 , canvas.width , canvas.height);
 
     for (let i = 0 ; i < circles.length; i++){
         circles[i].update();
     }
 
-    for (let i = 0; i < circles.length; i++) {
-    for (let j = i + 1; j < circles.length; j++) {
-        const dist = distance(circles[i].x, circles[i].y, circles[j].x, circles[j].y);
-        if (dist < 30) {
-            context.beginPath();
-            context.moveTo(circles[i].x, circles[i].y);
-            context.lineTo(circles[j].x, circles[j].y);
-            context.strokeStyle = "rgba(0, 187, 249," + (1 - dist / 30) + ")";
-            context.lineWidth = 0.5;
-            context.stroke();
-        }
-    }
-}
+   
 }
 
 init();

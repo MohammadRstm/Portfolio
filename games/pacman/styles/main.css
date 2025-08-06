@@ -112,3 +112,43 @@ border-radius: 20px;
 background-color: red;
 margin-left: 3px;
 }
+
+/* Small devices - phones */
+@media (max-width: 600px) {
+  body {
+    height: auto;  /* Let body grow naturally on small screens */
+    padding: 1rem;
+    background-position: center top;
+  }
+
+  canvas#canvas {
+    width: 100% !important;   /* Make canvas full width */
+    height: auto !important;  /* Auto height to maintain aspect ratio */
+    max-height: 300px;        /* Optional max height to avoid too tall canvas */
+  }
+
+  .focus-button-container {
+    justify-content: center;  /* Center buttons on small screens */
+    padding-left: 0;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .focus-button, .stop-focus-mode-button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    flex-grow: 1;             /* Make buttons stretch nicely */
+  }
+}
+
+/* Medium devices - tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+  canvas#canvas {
+    width: 80% !important;
+    height: auto !important;
+  }
+
+  .focus-button-container {
+    padding-left: 10px;
+  }
+}

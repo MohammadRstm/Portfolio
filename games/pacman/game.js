@@ -2,8 +2,6 @@ const canvas = document.getElementById("canvas");
 const canvasContext = canvas.getContext("2d");
 const pacmanFrames = document.getElementById("animations");
 const ghostFrames = document.getElementById("ghosts");
-const focusModeButton = document.querySelector(".focus-button");
-const stopFocusModeButton = document.querySelector(".stop-focus-mode-button");
 const body = document.body;
 // Objectives for game : 
 // 1. Add ability to change game setting s.a speed , fps , number of ghosts..
@@ -12,8 +10,6 @@ const body = document.body;
 // 4. fix spawn offsets for different maps
 // 5. seperate files 
 // 6. Don't forget to remove focus mode 
-
-
 
 // Game Maps
 
@@ -94,9 +90,6 @@ let Maps = [
 // get the correct map to play from url
 const urlParams = new URLSearchParams(window.location.search);
 const mapIndex = urlParams.get('map');
-console.log("Map index:", mapIndex);
-
-
 
 // game map
 let map = Maps[mapIndex];
@@ -226,37 +219,6 @@ let gameOverSound = new Audio('sounds/game-over.mp3');
 const eatingSound = new Audio('sounds/pacman_eating_sound.mp3');
 const winSound = new Audio('sounds/winner_winner.mp3');
 
-// focus Mode 
-let currentSoundIndex= 0;
-let currentAudio = null;
-// focus mode songs
-const focusSounds = [
-    new Audio('sounds/latmeyet_1.mp4'),
-    new Audio('sounds/latmeyet_2.mp4'),
-    new Audio('sounds/latmeyet_3.mp4'),
-    new Audio('sounds/latmeyet_4.mp4'),
-];
-
-focusModeButton.addEventListener("click" , () =>{
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-    }
-    
-    currentAudio = focusSounds[currentSoundIndex];
-    currentAudio.loop = true;
-    currentAudio.play();
-    currentSoundIndex = (currentSoundIndex + 1) % focusSounds.length;
-    
-});
-
-stopFocusModeButton.addEventListener("click" , () =>{
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-    }
-});
-// end of focus Mode
 
 // play game sounds
 let playStartUpSound = () =>{
@@ -400,10 +362,6 @@ let gameOver = () =>{
 let gameWon = () =>{
     drawWin();
     body.classList.remove("glow-background-red");
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-    }
     clearInterval(gameInterval);
     winSound.play();
     winSound.onended = () => {
@@ -658,6 +616,34 @@ window.addEventListener("keydown" , (event) =>{
     
 })
 // end of input scan
+
+let lastScrollY = window.scrollY;
+window.addEventListener('scroll', () => {
+  let currentScrollY = window.scrollY;
+
+  if (currentScrollY > lastScrollY) {
+    pacman.nextDirection = DIRECTION_BOTTOM;
+  } else if (currentScrollY < lastScrollY) {
+    pacman.nextDirection = DIRECTION_UP;
+  } else {
+    // No change 
+  }
+
+  lastScrollY = currentScrollY;
+}, { passive: true });
+
+let lastScrollX = window.scrollX;
+window.addEventListener('scroll', () => {
+  let currentScrollX = window.scrollX;
+
+  if (currentScrollX > lastScrollX) {
+    pacamn.nextDirection = DIRECTION_RIGHT;
+  } else if (currentScrollX < lastScrollX) {
+    pacamn.nextDirection = DIRECTION_RIGHT;
+  }
+
+  lastScrollX = currentScrollX;
+}, { passive: true });
 
 
 document.addEventListener("keydown", function(event) {
