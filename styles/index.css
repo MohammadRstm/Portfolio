@@ -7,6 +7,7 @@ box-sizing: border-box;
 html, body {
   width: 100%;
   overflow-x: hidden;
+  height: 100%;
 }
 
 body {
@@ -14,6 +15,11 @@ font-family: 'Inter', sans-serif;
 background: linear-gradient(180deg, #1a0033 0%, #230042 100%);
 color: #ffffff;
 line-height: 1.6;
+ scrollbar-width: none;         
+-ms-overflow-style: none; 
+}
+body::-webkit-scrollbar {
+  display: none;                 
 }
 
 header {
@@ -22,7 +28,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(180deg, #000000 0%, #230042 100%);
+  background: transparent;
+  backdrop-filter: blur(3px);
   border-bottom: 1px solid #1a1a2e;
   flex-wrap: nowrap; /* Prevent wrapping */
   box-sizing: border-box;
@@ -323,6 +330,17 @@ width: 100%;
 text-align: center;
 padding: 2rem;
 color: #666;
-background: linear-gradient(180deg, #1a0033 0%, #230042 100%);
+  background: transparent;
+  backdrop-filter: blur(3px);
+}
 
+
+canvas {
+  position : fixed;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Send it to the back */
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* So it doesn’t block clicks */
 }

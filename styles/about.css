@@ -2,8 +2,9 @@
   display: flex;
   justify-content: center;
   padding: 4rem 2rem;
-  background: linear-gradient(180deg, #230042 0%, #1a0033 100%);
+  background: transparent;
   width: 100%;
+
 }
 
 .about-container {

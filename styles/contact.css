@@ -2,7 +2,9 @@
   display: flex;
   justify-content: center;
   padding: 4rem 2rem;
-  background: linear-gradient(180deg, #1a0033 0%, #230042 100%);
+  background: transparent;
+  will-change: backdrop-filter;
+
 }
 
 .contact-container {
