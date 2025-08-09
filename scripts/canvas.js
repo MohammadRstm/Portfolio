@@ -81,7 +81,7 @@ class Circle{
                 context.lineTo(circles[i].x, circles[i].y);
                 const distOpacity = 1 - dist / maxDistance;
                 context.strokeStyle = `rgba(0, 187, 249, ${distOpacity})`;
-                context.lineWidth = 0.5;
+                context.lineWidth = 0.8;
                 context.stroke();
             }
 
